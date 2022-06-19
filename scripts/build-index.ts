@@ -42,18 +42,6 @@ const index = components
   )
   .join('\n')
 
-// try {
-//   fs.writeFileSync(
-//     path.resolve(__dirname, `../${ICONS_DIR}/index.ts`),
-//     exportLines
-//   )
-//   console.log(
-//     `Successfully added ${components.length} exports components to icon index.`
-//   )
-// } catch (err) {
-//   console.error(err)
-// }
-
 const types = `export enum IconType {
 ${components
   .map(({ type, file, prefix }) =>
@@ -63,18 +51,6 @@ ${components
   )
   .join('\n')}
 }`
-
-// try {
-//   fs.writeFileSync(
-//     path.resolve(__dirname, `../${ICONS_DIR}/types.ts`),
-//     iconTypeLines
-//   )
-//   console.log(
-//     `Successfully added ${components.length} icon components to the manifest.`
-//   )
-// } catch (err) {
-//   console.error(err)
-// }
 
 const paths = `import { IconType } from './types';
 
