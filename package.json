@@ -28,7 +28,9 @@
     "transform:illustrative": "svgr --out-dir src/icons/illustrative --typescript --svgo-config=svgo-illustrative.config.js -- .tmp/illustrative",
     "posttransform": "rimraf .tmp",
     "index": "ts-node --project tsconfig.node.json ./scripts/build-index.ts",
-    "postbuild": "tsc"
+    "postbuild": "rimraf dist/icons/**/*.d.ts",
+    "postindex": "tsc",
+    "remove-icon-types": "rimraf dist/icons/**/*.d.ts"
   },
   "peerDependencies": {
     "react": ">=16"
