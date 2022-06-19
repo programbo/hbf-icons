@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json.schemastore.org/swcrc",
+  "module": {
+    "type": "commonjs"
+  },
+  "minify": true,
+  "sourceMaps": true,
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": false
+    },
+    "transform": {
+      "optimizer": {},
+      "react": {
+        "useBuiltins": true
+      }
+    }
+  }
+}

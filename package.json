@@ -27,10 +27,7 @@
     "transform:all": "svgr --out-dir src/icons --typescript --svgo-config=svgo.config.js --ignore-existing -- .tmp",
     "transform:illustrative": "svgr --out-dir src/icons/illustrative --typescript --svgo-config=svgo-illustrative.config.js -- .tmp/illustrative",
     "posttransform": "rimraf .tmp",
-    "index": "ts-node --project tsconfig.node.json ./scripts/build-index.ts",
-    "postbuild": "run-s tsc remove-icon-types remove-icon-types",
-    "tsc": "tsc",
-    "remove-icon-types": "rimraf dist/icons/**/{*.d.ts,*.map}"
+    "index": "ts-node --project tsconfig.node.json ./scripts/build-index.ts"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -83,6 +80,7 @@
     "renamer": "^4.0.0",
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
+    "swc": "^1.0.11",
     "ts-node": "^10.8.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
