@@ -107,7 +107,7 @@ export const Default = Template.bind({})
 Default.args = {
   icon: IconType.RatingExcellent,
   size: '100%',
-  darkMode: false,
+  darkMode: window.matchMedia?.('(prefers-color-scheme: dark)').matches,
   color: '#234',
   background: '#fff',
 }

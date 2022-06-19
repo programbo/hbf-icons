@@ -111,6 +111,6 @@ Default.args = {
     '120px': Illustrative120px,
   },
   size: '80px',
-  darkMode: false,
+  darkMode: window.matchMedia?.('(prefers-color-scheme: dark)').matches,
   background: '#fff',
 }

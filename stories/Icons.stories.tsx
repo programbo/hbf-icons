@@ -29,7 +29,7 @@ const meta: Meta = {
     },
     darkMode: {
       control: 'boolean',
-      defaultValue: false,
+      defaultValue: window.matchMedia?.('(prefers-color-scheme: dark)').matches,
     },
     color: {
       control: 'color',
