@@ -20,7 +20,7 @@ export const LazyIcon = React.forwardRef<
   LazyIconProps
 >(({ icon, size, width, height, ...props }, ref) => {
   const Icon = React.lazy(
-    (): LazilyLoadedSVG => import(`../src/icons/${IconPath[icon]}`)
+    (): LazilyLoadedSVG => import(`./icons/${IconPath[icon]}`)
   )
 
   return (
