@@ -31,7 +31,7 @@ const components = sortedList
     file: type === 'file' ? file.slice(0, -4) : file,
   }))
 
-const index = components
+const icons = components
   .map(({ dir, file, prefix, type }) =>
     type === 'file'
       ? `export {default as ${prefix}${file}} from '${dir.replace(
@@ -68,11 +68,8 @@ ${components
 } as const`
 
 try {
-  Object.entries({ index, types, paths }).forEach(([fileName, fileContent]) => {
-    fs.writeFileSync(
-      resolve(__dirname, `../${ICONS_DIR}/${fileName}.ts`),
-      fileContent
-    )
+  Object.entries({ icons, types, paths }).forEach(([fileName, fileContent]) => {
+    fs.writeFileSync(resolve(__dirname, `../src/${fileName}.ts`), fileContent)
     console.log(
       `Successfully added ${components.length} items to ${ICONS_DIR}/${fileName}.ts`
     )
