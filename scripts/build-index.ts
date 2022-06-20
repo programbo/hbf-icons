@@ -36,7 +36,7 @@ const icons = components
     type === 'file'
       ? `export {default as ${prefix}${file}} from '${dir.replace(
           ICONS_DIR,
-          '.'
+          './icons'
         )}/${file}';`
       : `\n  // ${file} icons`.toUpperCase()
   )
