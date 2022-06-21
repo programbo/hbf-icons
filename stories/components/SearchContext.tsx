@@ -3,7 +3,8 @@ import type { FC, SVGProps } from 'react'
 
 import { createContext } from '../lib/createContext'
 
-type IconEntry = [string, FC<SVGProps<SVGSVGElement>>]
+export type IconComponent = FC<SVGProps<SVGSVGElement>>
+export type IconEntry = [string, IconComponent]
 
 export interface SearchContextProps {
   search: string

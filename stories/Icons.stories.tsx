@@ -1,11 +1,11 @@
 import React from 'react'
 
 import type { Meta, Story } from '@storybook/react'
-
+import { motion, LayoutGroup } from 'framer-motion';
 import * as Mono from '../src/icons/mono'
 import * as UtilityFill from '../src/icons/utility/fill'
 import * as UtilityOutline from '../src/icons/utility/outline'
-import { SearchProvider, useSearchContext } from './components/SearchContext'
+import { IconComponent, IconEntry, SearchProvider, useSearchContext } from './components/SearchContext'
 import { SearchInput } from './components/SearchInput'
 import { useCopyToClipboard } from './lib/useCopyToClipboard'
 import {
@@ -47,16 +47,18 @@ const meta: Meta = {
   },
   decorators: [
     (Story) => (
+
       <SearchProvider>
         <Story />
       </SearchProvider>
+
     ),
   ],
 }
 
 export default meta
 
-export type IconSet = Record<string, React.FC<React.SVGProps<SVGSVGElement>>>
+export type IconSet = Record<string, IconComponent>
 
 const addPrefix = (icons: IconSet, prefix: string = '') =>
   Object.fromEntries(Object.entries(icons).map(([key, value]) => [`${prefix}:${key}`, value]))
@@ -69,7 +71,7 @@ interface StoryProps {
   icons: IconSet
 }
 
-const Template: Story<StoryProps> = ({ color, background, darkMode = false, size, icons }) => {
+const Template: Story<StoryProps> = ({ color, background, darkMode = false, size, icons }: StoryProps) => {
   const { search, searchSort } = useSearchContext()
   const [copied, copyToClipboard] = useCopyToClipboard()
 
@@ -80,15 +82,17 @@ const Template: Story<StoryProps> = ({ color, background, darkMode = false, size
       <style>{placeholderStyle(darkMode)}</style>
       <SearchInput style={searchStyle(darkMode)} />
       <div style={gridStyle(iconSize, 160)}>
-        {Object.entries(icons)
+        <LayoutGroup>
+        {Object.entries<IconComponent>(icons)
           .sort(searchSort)
           .map(([prefixedName, Icon]) => {
             const [prefix, name] = prefixedName.split(':')
             const fullName = `${prefix}${name}`
             const match = fullName.toLowerCase().includes(search.toLowerCase())
             return (
-              <div
+              <motion.div
                 key={fullName}
+                layout
                 style={cellStyle(darkMode, color, background, match)}
                 onClick={copyToClipboard}
                 data-copy={fullName}
@@ -98,12 +102,13 @@ const Template: Story<StoryProps> = ({ color, background, darkMode = false, size
                   <span style={prefixStyle(darkMode)}>{prefix}</span>
                   {name}
                 </p>
-                <div className="copied" style={copyNotificationStyle(darkMode, color, background, copied === fullName)}>
+                <div className="copied" style={copyNotificationStyle(darkMode, color, background, copied === fullName, iconSize)}>
                   Icon name copied
                 </div>
-              </div>
+              </motion.div>
             )
           })}
+          </LayoutGroup>
       </div>
     </div>
   )

@@ -42,9 +42,7 @@ export const cellStyle = (
     fontSize: '0.75rem',
     textAlign: 'center',
     color: alt ? background : color,
-    transition: 'all 0.4s ease-in-out',
     cursor: 'pointer',
-
     opacity: match ? 1 : 0.2,
     transform: `scale(${match ? 1 : 0.9})`,
     filter: match
@@ -77,7 +75,8 @@ export const copyNotificationStyle = (
   alt: boolean = false,
   color: string,
   background: string,
-  copied: boolean
+  copied: boolean,
+  iconSize: number
 ) =>
   ({
     position: 'absolute',
@@ -93,8 +92,7 @@ export const copyNotificationStyle = (
     transition: 'all 0.2s ease-in-out',
     pointerEvents: 'none',
     zIndex: 1,
-    top: '35%',
-    transform: `scale(${copied ? 1 : 1.2})`,
+    transform: `scale(${copied ? 1 : 1.2}) translateY(${iconSize / 2}px)`,
     opacity: copied ? 1 : 0,
   } as React.CSSProperties)
 
