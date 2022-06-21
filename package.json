@@ -30,7 +30,9 @@
     "posttransform": "rimraf .tmp",
     "index": "ts-node --project tsconfig.node.json ./scripts/build-index.ts",
     "postbuild": "swc src/icons -d dist",
-    "clean": "rimraf src/* dist .tmp"
+    "clean": "rimraf src/* dist .tmp",
+    "predeploy": "run-s clean prepare build-storybook",
+    "deploy": "vc --prod"
   },
   "peerDependencies": {
     "react": ">=16"
